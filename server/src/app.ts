@@ -1,21 +1,29 @@
-import * as express from "express";
-import * as bodyParser from "body-parser";
+import * as express from 'express';
+import * as bodyParser from 'body-parser';
+import { StockResource } from './resources/stock-resource';
+import { DatabaseService } from './database/database.service';
 
 class App {
-
     public app: express.Application;
+    public database: DatabaseService;
 
     constructor() {
         this.app = express();
-        this.config();        
+        this.database = new DatabaseService();
+        this.configApp();
+        this.initResources();
     }
 
-    private config(): void{
+    private configApp(): void {
         // support application/json type post data
         this.app.use(bodyParser.json());
 
         //support application/x-www-form-urlencoded post data
         this.app.use(bodyParser.urlencoded({ extended: false }));
+    }
+
+    private initResources() {
+        new StockResource(this.app, this.database);
     }
 }
 

@@ -1,0 +1,7 @@
+CREATE TABLE `product` (
+   `id` int(11) NOT NULL AUTO_INCREMENT,
+	`name` CHAR(255) NOT NULL,
+	`stockAmount` TINYINT NOT NULL DEFAULT '0',
+	PRIMARY KEY (id),
+	UNIQUE INDEX `Name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
