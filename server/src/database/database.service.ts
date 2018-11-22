@@ -1,3 +1,5 @@
+import { Connection, ConnectionConfig } from 'mysql';
+
 const mysql = require('mysql');
 
 export class DatabaseService {
@@ -23,19 +25,21 @@ export class DatabaseService {
     /**
      * Starts a database connection
      */
-    private createConnection(): any {
-        return mysql.createConnection({
+    private createConnection(): Connection {
+        const config: ConnectionConfig = {
             host: 'localhost',
             user: 'root',
-            passoword: '',
-            database: 'stock'
-        });
+            password: '',
+            database: 'stock',
+
+        };
+        return mysql.createConnection(config);
     }
 
     /**
      * Ends the database connection
      */
-    private endConnection(connection: any): void {
+    private endConnection(connection: Connection): void {
         connection.end((error) => {
             console.log('DatabaseService connection terminated', error);
         });

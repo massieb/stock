@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-import { StockResource } from './resources/stock-resource';
+import { ProductResource } from './product/product-resource';
 import { DatabaseService } from './database/database.service';
 
 class App {
@@ -23,7 +23,7 @@ class App {
     }
 
     private initResources() {
-        new StockResource(this.app, this.database);
+        new ProductResource(this.app, this.database);
     }
 }
 
