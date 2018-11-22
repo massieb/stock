@@ -1,0 +1,37 @@
+<table class="table stock-table">
+  <tr>
+    <th class="product">Product</th>
+    <th class="stock">Op voorraad</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <tr *ngFor="let product of products">
+
+    <td>{{product.name}}</td>
+    <td>{{product.count}}</td>
+
+    <td class="icon">
+      <button class="btn btn-success" (click)="plusOne(product)"><span class="fa fa-plus"></span></button>
+    </td>
+    <td class="icon">
+      <button class="btn btn-danger fill" (click)="minusOne(product)"><span class="fa fa-minus"></span></button>
+    </td>
+    <td class="icon">
+      <button class="btn btn-warning" (click)="deleteProduct(product)"><span class="fa fa-trash-o"></span></button>
+    </td>
+
+  </tr>
+
+  <tr>
+
+    <td><label><input class="name" [(ngModel)]="addName" placeholder="name"/></label></td>
+    <td><label><input class="count" [(ngModel)]="addCount" placeholder="count"/></label></td>
+
+    <td class="icon">
+      <button class="btn btn-success" (click)="addProduct()"><span class="fa fa-plus"></span></button>
+    </td>
+
+  </tr>
+</table>

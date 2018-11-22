@@ -1,0 +1,61 @@
+.stock-table {
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+
+.stock-table th {
+  width: 10%;
+  border: none;
+}
+
+.stock-table td, .stock-table .stock, .stock-table .product {
+  border: 1px solid #dddddd;
+  padding: unset;
+}
+
+.stock-table tr:nth-child(even) {
+  border: 1px solid #dddddd;
+  background-color: #dddddd;
+}
+
+.stock-table tr:nth-child(uneven) {
+  border: 1px solid #FFFFFF;
+}
+
+.stock-table tr:last-child {
+  border: 1px solid #dddddd;
+}
+
+.stock-table .product {
+  width: 50%;
+}
+
+.stock-table .stock {
+  width: 10%;
+}
+
+.stock-table .icon {
+  border-left: 1px solid #FFFFFF;
+  border-right: 1px solid #FFFFFF;
+}
+
+
+.stock-table button {
+  height: 50%;
+  width: 100%;
+  font-size: 80%;
+  border-radius: 0;
+}
+
+.btn:focus, .btn:active {
+  box-shadow: none !important;
+}
+
+.fa-plus, .fa-minus {
+  color: black;
+}
+
+.name, .count {
+  width: 80%;
+}
