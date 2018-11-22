@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-import { ProductResource } from './resources/product-resource';
+import { ProductResource } from './product/product-resource';
 import { DatabaseService } from './database/database.service';
 
 class App {

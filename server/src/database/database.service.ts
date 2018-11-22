@@ -1,4 +1,4 @@
-import { Connection } from 'mysql';
+import { Connection, ConnectionConfig } from 'mysql';
 
 const mysql = require('mysql');
 
@@ -26,12 +26,14 @@ export class DatabaseService {
      * Starts a database connection
      */
     private createConnection(): Connection {
-        return mysql.createConnection({
+        const config: ConnectionConfig = {
             host: 'localhost',
             user: 'root',
-            passoword: '',
-            database: 'stock'
-        });
+            password: '',
+            database: 'stock',
+
+        };
+        return mysql.createConnection(config);
     }
 
     /**
