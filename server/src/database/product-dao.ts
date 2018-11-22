@@ -6,7 +6,6 @@ import { CreateProduct } from '../model/create-product';
  * Product data access object
  */
 export class ProductDao {
-    private static TABLE_NAME = 'product';
 
     /**
      * Constructor
@@ -20,7 +19,10 @@ export class ProductDao {
      * @returns {Promise<Product[]>} The result
      */
     getAll(): Promise<Product[]> {
-        return this.databaseService.executeQuery(`SELECT * FROM ${ProductDao.TABLE_NAME}`);
+        const query =
+            `SELECT * ` +
+            `FROM ${Product.TABLE_NAME}`;
+        return this.databaseService.executeQuery(query);
     }
 
     /**
@@ -29,8 +31,18 @@ export class ProductDao {
      * @returns {Promise<void>} The result
      */
     createProduct(product: CreateProduct): Promise<void> {
-        // TODO validate product
-        return this.databaseService.executeQuery(`INSERT INTO ${ProductDao.TABLE_NAME} ` +
-            `(name, stockAmount) VALUES ('${product.name}', 0)`);
+        const query =
+            `INSERT INTO ${Product.TABLE_NAME} ` +
+            `(name, stockAmount) ` +
+            `VALUES ('${product.name}', 0);`;
+        return this.databaseService.executeQuery(query);
+    }
+
+    increaseStock(productName: string): Promise<Product> {
+        const query =
+            `UPDATE ${Product.TABLE_NAME} ` +
+            `SET stockAmount = stockAmount + 1 ` +
+            `WHERE name = ${productName};`;
+        return this.databaseService.executeQuery(query);
     }
 }

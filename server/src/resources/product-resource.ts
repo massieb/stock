@@ -3,7 +3,7 @@ import { DatabaseService } from '../database/database.service';
 import { Product } from '../database/model/product';
 import { ProductDao } from '../database/product-dao';
 
-export class StockResource {
+export class ProductResource {
     constructor(private app: Application, private databaseService: DatabaseService) {
         const productDao = new ProductDao(databaseService);
 
@@ -26,6 +26,15 @@ export class StockResource {
             .post((request: Request, response: Response) => {
                 productDao.createProduct(request.body).then(() => {
                     response.status(204).send()
+                }).catch((reason) => {
+                    response.status(500).send(reason);
+                });
+            });
+
+        app.route('/products/:name')
+            .put((request: Request, response: Response) => {
+                productDao.increaseStock(request.params.name).then(() => {
+                    response.status(204).send();
                 }).catch((reason) => {
                     response.status(500).send(reason);
                 });
