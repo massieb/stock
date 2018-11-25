@@ -4,9 +4,9 @@
 export class Product {
     public static TABLE_NAME = 'product';
 
-    private readonly id: number;
-    private readonly name: string;
-    private readonly stockAmount: number;
+    public id: number;
+    public name: string;
+    public stockAmount: number;
 
     /**
      * Constructor
@@ -16,17 +16,5 @@ export class Product {
     constructor(name: string, stockAmount: number) {
         this.name = name;
         this.stockAmount = stockAmount;
-    }
-
-    public getId() {
-        return this.id;
-    }
-
-    public getName() {
-        return this.name;
-    }
-
-    public getStockAmount() {
-        return this.stockAmount;
     }
 }

@@ -1,6 +1,6 @@
 import { DatabaseService } from '../../database/database.service';
 import { Product } from './product';
-import { CreateProduct } from '../model/create-product';
+import { WebCreateProduct } from '../model/web-create-product';
 
 /**
  * Product data access object
@@ -22,20 +22,20 @@ export class ProductDao {
         const query =
             `SELECT * ` +
             `FROM ${Product.TABLE_NAME}`;
-        return this.databaseService.executeQuery(query);
+        return this.databaseService.executeQuery<Product[]>(query);
     }
 
     /**
      * Add a new product to the database
-     * @param {CreateProduct} product The product to create
+     * @param {WebCreateProduct} product The product to create
      * @returns {Promise<void>} The result
      */
-    createProduct(product: CreateProduct): Promise<void> {
+    createProduct(product: WebCreateProduct): Promise<void> {
         const query =
             `INSERT INTO ${Product.TABLE_NAME} ` +
             `(name, stockAmount) ` +
             `VALUES ('${product.name}', ${product.initialAmount});`;
-        return this.databaseService.executeQuery(query);
+        return this.databaseService.executeQuery<void>(query);
     }
 
     /**
@@ -47,7 +47,7 @@ export class ProductDao {
         const query =
             `DELETE FROM ${Product.TABLE_NAME} ` +
             `WHERE name = '${productName}'`;
-        return this.databaseService.executeQuery(query);
+        return this.databaseService.executeQuery<void>(query);
     }
 
     /**
@@ -65,6 +65,6 @@ export class ProductDao {
             `  ELSE (stockAmount + ${changeAmount}) ` +
             `  END ` +
             `WHERE name = '${productName}';`;
-        return this.databaseService.executeQuery(query);
+        return this.databaseService.executeQuery<void>(query);
     }
 }

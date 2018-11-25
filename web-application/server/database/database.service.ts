@@ -30,7 +30,7 @@ export class DatabaseService {
             host: 'localhost',
             user: 'root',
             password: '',
-            database: 'stock',
+            database: 'stock'
 
         };
         return mysql.createConnection(config);
@@ -41,7 +41,9 @@ export class DatabaseService {
      */
     private endConnection(connection: Connection): void {
         connection.end((error) => {
-            console.log('DatabaseService connection terminated', error);
+            if (error) {
+                console.log('DatabaseService connection terminated', error);
+            }
         });
     }
 }
